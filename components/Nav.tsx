@@ -19,9 +19,10 @@ export default function Nav() {
             {open ? <path d="M6 6l12 12M18 6 6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
           </svg>
         </button>
-        <a href="#" aria-label="Tab4U" className="flex shrink-0 items-center gap-2 ps-1">
-          <span className="grid size-10 place-items-center rounded-full bg-lime font-display text-[11px] font-medium">T4U</span>
-          <span className="hidden font-display text-lg tracking-tight sm:block">Tab4U</span>
+        <a href="#" aria-label="Tab4U" className="flex h-10 shrink-0 items-center rounded-full bg-[#222] px-3.5 transition hover:bg-[#2c2c2c]">
+          {/* הלוגו המקורי בנוי לרקע כהה, לכן הוא יושב על כמוסה כהה */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/tab4u-logo.svg" alt="Tab4U" width={73} height={26} className="h-[26px] w-auto" />
         </a>
 
         <form onSubmit={(e) => e.preventDefault()} className="mx-1 flex h-10 min-w-0 flex-1 items-center gap-2 rounded-full bg-black/[.045] px-4 transition focus-within:bg-white focus-within:ring-2 focus-within:ring-brand/40">

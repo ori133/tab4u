@@ -3,7 +3,10 @@ export default function Footer() {
     <footer className="print:hidden mx-auto mt-16 max-w-6xl px-3 pb-28 sm:px-6 lg:pb-10">
       <div className="glass flex flex-wrap items-center justify-between gap-4 rounded-3xl px-6 py-5 text-xs text-muted">
         <div className="flex items-center gap-3">
-          <span className="grid size-8 place-items-center rounded-full bg-lime font-display text-[9px] text-ink">T4U</span>
+          <span className="flex h-9 items-center rounded-full bg-[#222] px-3">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/tab4u-logo.svg" alt="Tab4U" width={62} height={22} className="h-[22px] w-auto" />
+          </span>
           <span>Tab4U, דוגמת עיצוב. כל הזכויות שמורות לבעלים.</span>
         </div>
         <div className="flex gap-4">

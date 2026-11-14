@@ -4,8 +4,8 @@ import { song } from "@/lib/song";
 import Pill from "./Pill";
 
 export default function SongHeader() {
-  const { tone, setTone } = useSettings();
-  const easy = tone === EASY_TONE;
+  const { tone, setTone, simple, setSimple } = useSettings();
+  const easy = tone === EASY_TONE && simple;
   return (
     <section className="glass relative overflow-hidden rounded-[2rem] p-5 sm:p-7 print:p-0">
       <div className="pointer-events-none absolute -start-20 -top-24 size-72 print:hidden rounded-full bg-gradient-to-br from-lime/40 to-transparent blur-2xl" />
@@ -32,7 +32,7 @@ export default function SongHeader() {
           </dl>
           <div className="mt-5 flex flex-wrap gap-3 print:hidden">
             <button
-              onClick={() => { setTone(easy ? 0 : EASY_TONE); document.getElementById("reader")?.scrollIntoView({ behavior: "smooth", block: "start" }); }}
+              onClick={() => { setTone(easy ? 0 : EASY_TONE); setSimple(!easy); document.getElementById("reader")?.scrollIntoView({ behavior: "smooth", block: "start" }); }}
               aria-pressed={easy}
               className={`rounded-full px-7 py-3 text-sm font-medium transition active:scale-95 ${easy ? "border border-brand bg-brand-soft text-brand" : "bg-brand text-white shadow-[0_12px_24px_-8px_rgba(46,124,246,.7)] hover:brightness-110"}`}>
               {easy ? "גרסה מקורית" : "גרסה קלה (Am)"}
