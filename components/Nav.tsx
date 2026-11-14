@@ -7,7 +7,7 @@ const links = ["שירים חדשים", "אמנים", "הכי נצפים", "אק
 export default function Nav() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-3 z-50 px-3 sm:px-6">
+    <header className="sticky top-3 z-50 px-3 sm:px-6 print:hidden">
       <nav className="glass mx-auto flex max-w-6xl items-center gap-2 rounded-full p-1.5 sm:gap-3" aria-label="ראשי">
         <button
           onClick={() => setOpen((v) => !v)}

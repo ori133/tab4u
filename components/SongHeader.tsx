@@ -4,7 +4,7 @@ import Pill from "./Pill";
 export default function SongHeader() {
   return (
     <section className="glass relative overflow-hidden rounded-[2rem] p-5 sm:p-7">
-      <div className="pointer-events-none absolute -start-20 -top-24 size-72 rounded-full bg-gradient-to-br from-lime/40 to-transparent blur-2xl" />
+      <div className="pointer-events-none absolute -start-20 -top-24 size-72 print:hidden rounded-full bg-gradient-to-br from-lime/40 to-transparent blur-2xl" />
       <div className="relative grid items-center gap-8 md:grid-cols-[1fr_auto]">
         <div>
           <div className="mb-3 flex flex-wrap gap-2">
@@ -26,7 +26,7 @@ export default function SongHeader() {
             <dt className="text-muted">דירוג</dt>
             <dd className="flex items-center gap-1.5"><span className="text-brand">★</span>{song.rating}<span className="text-muted">מהשירים האהובים</span></dd>
           </dl>
-          <div className="mt-5 flex flex-wrap gap-3">
+          <div className="mt-5 flex flex-wrap gap-3 print:hidden">
             <button className="rounded-full bg-brand px-7 py-3 text-sm font-medium text-white shadow-[0_12px_24px_-8px_rgba(46,124,246,.7)] transition hover:brightness-110 active:scale-95">
               גרסה קלה
             </button>
@@ -36,18 +36,24 @@ export default function SongHeader() {
           </div>
         </div>
 
-        {/* אריח מצייר, מחליף את בלוק המודעה הריק בדף המקורי */}
-        <div aria-hidden className="relative hidden size-40 md:block">
-          <div className="float-slow absolute inset-0 grid place-items-center rounded-[1.75rem] bg-gradient-to-br from-brand-soft to-white shadow-[0_30px_50px_-25px_rgba(46,124,246,.5)]">
-            <svg viewBox="0 0 200 200" className="w-4/5" fill="none">
-              <path d="M100 40 L160 72 L100 104 L40 72Z" fill="#fff" stroke="#cfe0ff" />
-              <path d="M40 72 L100 104 L100 140 L40 108Z" fill="#e9f1ff" stroke="#cfe0ff" />
-              <path d="M160 72 L100 104 L100 140 L160 108Z" fill="#dbe8ff" stroke="#cfe0ff" />
-              <path d="M100 54 L142 76 L100 98 L58 76Z" fill="#2e7cf6" />
-              <circle cx="100" cy="76" r="8" fill="#c8f67a" />
-            </svg>
+        {/* תצוגה מקדימה של הקליפ, מחליפה את בלוק המודעה הריק בדף המקורי */}
+        <a href="#" aria-label={`צפייה בקליפ ${song.title}`} className="group relative hidden w-72 overflow-hidden rounded-3xl bg-gradient-to-br from-[#1a2440] via-[#27408b] to-brand shadow-[0_24px_40px_-24px_rgba(30,50,120,.7)] md:block print:hidden">
+          <div className="aspect-video p-4">
+            <div className="flex items-end gap-1" aria-hidden>
+              {[10, 18, 12, 24, 16, 30, 20, 14, 26, 12, 18, 9].map((h, i) => (
+                <span key={i} style={{ height: h }} className="w-1 rounded-full bg-white/35" />
+              ))}
+            </div>
           </div>
-        </div>
+          <span className="absolute inset-0 grid place-items-center">
+            <span className="grid size-14 place-items-center rounded-full bg-white/95 text-brand shadow-lg transition group-hover:scale-110">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden><path d="M8 5v14l11-7z" /></svg>
+            </span>
+          </span>
+          <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent px-4 pb-3 pt-8 text-sm text-white">
+            {song.artist} - {song.title}
+          </span>
+        </a>
       </div>
     </section>
   );

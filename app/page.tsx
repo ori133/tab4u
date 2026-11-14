@@ -10,7 +10,7 @@ export default function Page() {
     <>
       <Nav />
       <main className="mx-auto max-w-6xl px-3 pt-6 sm:px-6">
-        <nav aria-label="פירורי לחם" className="mb-5 flex items-center gap-2 px-2 text-xs text-muted">
+        <nav aria-label="פירורי לחם" className="mb-5 flex items-center gap-2 px-2 text-xs text-muted print:hidden">
           <a href="#" className="hover:text-ink">ראשי</a><span>‹</span>
           <a href="#" className="hover:text-ink">{song.artist}</a><span>‹</span>
           <span className="text-ink">{song.title}</span>

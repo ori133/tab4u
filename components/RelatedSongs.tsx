@@ -48,7 +48,7 @@ function Row({ it, n }: { it: Item; n: number }) {
 
 function List({ title, items, more }: { title: string; items: Item[]; more?: string }) {
   return (
-    <section className="mt-12">
+    <section className="mt-12 print:hidden">
       <div className="mb-3 flex items-end justify-between px-1">
         <h2 className="font-display text-2xl tracking-tight">{title}</h2>
         {more && <a href="#" className="text-sm text-brand hover:underline">{more}</a>}

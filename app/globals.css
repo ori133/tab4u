@@ -40,3 +40,18 @@ body {
   .float-slow { animation: none; }
   html { scroll-behavior: auto; }
 }
+
+/* הדפסה: רק כותרת השיר, האקורדים והמילים */
+@media print {
+  @page { margin: 14mm; }
+  html, body { background: #fff !important; }
+  .glass { background: none !important; box-shadow: none !important; border: 0 !important; backdrop-filter: none !important; }
+  /* אנימציות הגילוי משאירות אלמנטים שקופים מחוץ לתצוגה */
+  [style*="opacity"] { opacity: 1 !important; transform: none !important; }
+  .float-slow { animation: none !important; }
+  article { padding: 0 !important; }
+  article span[class*="bg-brand-soft"] { background: none !important; color: #000 !important; font-weight: 700; padding: 0 .35em !important; }
+  article span[class*="bg-black/5"] { background: none !important; border: 1px solid #999; color: #000 !important; }
+  article, article * { color: #000; }
+  section { break-inside: auto; }
+}

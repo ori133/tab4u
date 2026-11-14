@@ -87,7 +87,7 @@ export default function ChordReader() {
 
   return (
     <section id="reader" className="mt-6">
-      <div className="grid gap-5 lg:grid-cols-[1fr_360px]">
+      <div className="grid gap-5 lg:grid-cols-[1fr_360px] print:block">
         <Reveal>
           <article className="glass rounded-3xl p-6 sm:p-10" aria-label="אקורדים לשיר">
             <div className="mb-8 flex flex-wrap items-center gap-2 border-b border-black/5 pb-6">
@@ -138,7 +138,7 @@ export default function ChordReader() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="top-24 flex gap-3 lg:sticky">
+          <div className="top-24 flex gap-3 lg:sticky print:hidden">
             <aside className="glass min-w-0 flex-1 space-y-2.5 rounded-3xl p-3.5" aria-label="כלי נגינה">
               <div className="flex items-center gap-2 rounded-2xl border border-black/10 bg-white/70 p-1.5">
                 <button onClick={() => setSize(20)} className="px-3 text-center text-[11px] leading-tight text-muted transition hover:text-ink">אפס גודל<br />פונט</button>
@@ -203,7 +203,7 @@ export default function ChordReader() {
         </Reveal>
       </div>
 
-      <div className="glass fixed inset-x-3 bottom-3 z-40 flex items-center justify-between gap-1 rounded-full p-1.5 lg:hidden" role="toolbar" aria-label="כלים מהירים">
+      <div className="glass fixed inset-x-3 bottom-3 z-40 print:hidden flex items-center justify-between gap-1 rounded-full p-1.5 lg:hidden" role="toolbar" aria-label="כלים מהירים">
         <button onClick={() => setAuto((v) => !v)} aria-label={auto ? "עצור גלילה אוטומטית" : "התחל גלילה אוטומטית"}
           className={`grid size-11 place-items-center rounded-full transition active:scale-95 ${auto ? "bg-brand text-white" : "bg-white shadow-sm"}`}>
           {auto
