@@ -190,6 +190,25 @@ export default function ChordReader() {
           </div>
         </Reveal>
       </div>
+
+      <div className="glass fixed inset-x-3 bottom-3 z-40 flex items-center justify-between gap-1 rounded-full p-1.5 lg:hidden" role="toolbar" aria-label="כלים מהירים">
+        <button onClick={() => setAuto((v) => !v)} aria-label={auto ? "עצור גלילה אוטומטית" : "התחל גלילה אוטומטית"}
+          className={`grid size-11 place-items-center rounded-full transition active:scale-95 ${auto ? "bg-brand text-white" : "bg-white shadow-sm"}`}>
+          {auto
+            ? <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" /></svg>
+            : <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>}
+        </button>
+        <button onClick={() => setSpeed((v) => Math.max(1, v - 1))} aria-label="גלול לאט יותר" className="grid size-11 place-items-center rounded-full text-xl">−</button>
+        <span className="w-5 text-center font-mono text-xs text-muted">{speed}</span>
+        <button onClick={() => setSpeed((v) => Math.min(10, v + 1))} aria-label="גלול מהר יותר" className="grid size-11 place-items-center rounded-full text-xl">+</button>
+        <span className="h-6 w-px bg-black/10" />
+        <button onClick={() => setSize((v) => Math.max(14, v - 2))} aria-label="הקטן את הגופן" className="grid size-11 place-items-center rounded-full text-xs font-medium">א</button>
+        <button onClick={() => setSize((v) => Math.min(36, v + 2))} aria-label="הגדל את הגופן" className="grid size-11 place-items-center rounded-full text-xl font-medium">א</button>
+        <span className="h-6 w-px bg-black/10" />
+        <button onClick={() => setTone((t) => Math.max(-2.5, t - 0.5))} aria-label="הורד טון" className="grid size-11 place-items-center rounded-full text-xl">−</button>
+        <span dir="ltr" className="w-9 text-center font-mono text-xs text-brand">{tone > 0 ? "+" : ""}{tone}</span>
+        <button onClick={() => setTone((t) => Math.min(3, t + 0.5))} aria-label="העלה טון" className="grid size-11 place-items-center rounded-full text-xl">+</button>
+      </div>
     </section>
   );
 }
