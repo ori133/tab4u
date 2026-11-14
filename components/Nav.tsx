@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-const links = ["שירים חדשים", "אמנים", "הכי נצפים", "אקורדים לגיטרה", "פסנתר", "אוקולולה", "שירי ילדים", "מילון אקורדים"];
+const links = ["שירים חדשים", "אמנים", "הכי נצפים", "אקורדים לגיטרה", "פסנתר", "יוקולילי", "שירי ילדים", "מילון אקורדים"];
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
