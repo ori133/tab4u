@@ -120,7 +120,7 @@ export default function ChordReader() {
                                 ? <span className="px-1.5 font-mono text-[0.72em] text-black/25">|</span>
                                 : <span className="cursor-default rounded-md bg-brand-soft px-1.5 py-0.5 font-mono text-[0.72em] text-brand transition group-hover:bg-brand group-hover:text-white">{c}</span>)}
                               {c && !bar && hasDiagram(c, diagInst) && (
-                                <span className="glass pointer-events-none absolute start-0 top-full z-30 mt-1 hidden rounded-2xl p-3 group-hover:block">
+                                <span className="glass pointer-events-none absolute start-1/2 top-full z-30 mt-1 hidden -translate-x-1/2 rounded-2xl bg-white p-3 md:group-hover:block">
                                   <ChordDiagram chord={c} inst={diagInst} />
                                 </span>
                               )}
@@ -188,7 +188,7 @@ export default function ChordReader() {
               <Row icon={<span className="grid size-6 place-items-center rounded-full bg-gradient-to-br from-fuchsia-500 to-violet-600 text-white">{icons.jam}</span>}>התחל ג׳אם סשן</Row>
             </aside>
 
-            <div className="glass flex h-fit w-[68px] flex-col items-center gap-1 rounded-full p-2" role="group" aria-label="גלילה אוטומטית">
+            <div className="glass hidden h-fit w-[68px] flex-col items-center gap-1 rounded-full p-2 lg:flex print:hidden" role="group" aria-label="גלילה אוטומטית">
               <button onClick={() => setAuto((v) => !v)} aria-label={auto ? "עצור גלילה אוטומטית" : "התחל גלילה אוטומטית"}
                 className={`grid size-12 place-items-center rounded-full transition active:scale-95 ${auto ? "bg-brand text-white" : "bg-white text-ink shadow-sm"}`}>
                 {auto

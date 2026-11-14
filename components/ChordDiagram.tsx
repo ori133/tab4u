@@ -21,7 +21,8 @@ function parse(chord: string): { root: number; q: Quality } | null {
 }
 
 type Dot = { s: number; f: number; e?: string };
-type Shape = { dots: Dot[]; muted: number[]; strings: number; barre?: number; base: number };
+type Barre = { row: number; from: number; to: number };
+type Shape = { dots: Dot[]; muted: number[]; strings: number; barre?: Barre; base: number };
 
 /* ---------- גיטרה ---------- */
 // צורות לפי מיתרים 6..1 (-1 = לא מנגנים), יחסית לסריג הבסיס
@@ -32,20 +33,31 @@ const OPEN: Record<string, number[]> = {
   Am: [-1, 0, 2, 2, 1, 0], Dm: [-1, -1, 0, 2, 3, 1], Em: [0, 2, 2, 0, 0, 0],
 };
 
+
+/** מציאת ברה ושיוך אצבעות: ברה = אצבע 1, השאר לפי סדר הסריגים */
+function withFingers(dots: Dot[], strings: number, firstPlayed = 0): { dots: Dot[]; barre?: Barre } {
+  if (!dots.length) return { dots };
+  const low = Math.min(...dots.map((d) => d.f));
+  const onLow = dots.filter((d) => d.f === low).sort((a, b) => a.s - b.s);
+  // ברה: לפחות שלושה תווים באותו סריג, או שניים שפורשים מהמיתר הראשון שמנגנים ועד המיתר האחרון
+  const spans = onLow[0].s === firstPlayed && onLow[onLow.length - 1].s === strings - 1;
+  const barre = onLow.length >= 3 || (onLow.length >= 2 && spans) ? { row: low, from: onLow[0].s, to: onLow[onLow.length - 1].s } : undefined;
+  let next = barre ? 2 : 1;
+  const rest = (barre ? dots.filter((d) => d.f !== low) : dots).slice().sort((a, b) => a.f - b.f || a.s - b.s);
+  const out = rest.map((d) => ({ ...d, e: String(Math.min(4, next++)) }));
+  return { dots: out, barre };
+}
+
 function guitarFromFrets(frets: number[]): Shape {
   const played = frets.filter((f) => f > 0);
   const base = played.length && Math.max(...played) > 4 ? Math.min(...played) : 1;
-  const dots: Dot[] = [];
+  const raw: Dot[] = [];
   const muted: number[] = [];
   frets.forEach((f, i) => {
     if (f < 0) muted.push(i);
-    else if (f > 0) dots.push({ s: i, f: f - base + 1 });
+    else if (f > 0) raw.push({ s: i, f: f - base + 1 });
   });
-  const barre = (() => {
-    const low = Math.min(...played);
-    const hits = frets.filter((f) => f === low).length;
-    return played.length && low > 0 && frets[5] === low && hits >= 2 && frets.indexOf(low) <= 1 ? low - base + 1 : undefined;
-  })();
+  const { dots, barre } = withFingers(raw, 6, frets.findIndex((f) => f >= 0));
   return { dots, muted, strings: 6, barre, base };
 }
 
@@ -59,12 +71,14 @@ function guitarShape(chord: string): Shape | null {
     });
     const fr = [...m.values()].map((v) => v.f).filter((f) => f > 0);
     const base = fr.length && Math.max(...fr) > 4 ? Math.min(...fr) : 1;
-    return {
-      strings: 6,
-      base,
-      dots: [...m.entries()].filter(([, v]) => v.f > 0).map(([s, v]) => ({ s: 6 - s, f: v.f - base + 1, e: v.e })),
-      muted: [1, 2, 3, 4, 5, 6].filter((s) => !m.has(s)).map((s) => 6 - s),
-    };
+    const dots = [...m.entries()].filter(([, v]) => v.f > 0).map(([s, v]) => ({ s: 6 - s, f: v.f - base + 1, e: v.e }));
+    const muted = [1, 2, 3, 4, 5, 6].filter((s) => !m.has(s)).map((s) => 6 - s);
+    // אם באתר חסרים מספרי אצבעות, משלימים אוטומטית
+    if (dots.some((d) => !/^[1-4]$/.test(d.e ?? ""))) {
+      const r = withFingers(dots.map((d) => ({ s: d.s, f: d.f })), 6, Math.min(...dots.map((d) => d.s)));
+      return { strings: 6, base, dots: r.dots, muted, barre: r.barre };
+    }
+    return { strings: 6, base, dots, muted };
   }
   const p = parse(chord);
   if (!p) return null;
@@ -96,14 +110,9 @@ function ukeShape(chord: string): Shape | null {
   if (!best) return null;
   const played = best.filter((f) => f > 0);
   const base = played.length && Math.max(...played) > 4 ? Math.min(...played) : 1;
-  const low = Math.min(...best);
-  return {
-    strings: 4,
-    base,
-    muted: [],
-    barre: low > 0 && best.filter((f) => f === low).length >= 2 ? low - base + 1 : undefined,
-    dots: best.map((x, i) => ({ s: i, f: x - base + 1, x })).filter((d) => d.x > 0),
-  };
+  const raw = best.map((x, i) => ({ s: i, f: x - base + 1, x })).filter((d) => d.x > 0).map(({ s, f }) => ({ s, f }));
+  const { dots, barre } = withFingers(raw, 4);
+  return { strings: 4, base, muted: [], dots, barre };
 }
 
 /* ---------- ציור ---------- */
@@ -122,7 +131,12 @@ function Grid({ shape }: { shape: Shape }) {
         {Array.from({ length: ROWS + 1 }, (_, i) => (
           <line key={i} x1="0" x2={w} y1={i * FG} y2={i * FG} stroke={i === 0 && shape.base === 1 ? "#0b0b0f" : "#9aa3b5"} strokeWidth={i === 0 && shape.base === 1 ? 3 : 1} />
         ))}
-        {shape.barre && <rect x={-3} y={(shape.barre - 0.5) * FG - 4.5} width={w + 6} height="9" rx="4.5" fill="#2e7cf6" />}
+        {shape.barre && (
+          <g>
+            <rect x={shape.barre.from * SG - 5.8} y={(shape.barre.row - 0.5) * FG - 5.8} width={(shape.barre.to - shape.barre.from) * SG + 11.6} height="11.6" rx="5.8" fill="#2e7cf6" stroke="#fff" strokeWidth="1" />
+            <text x={shape.barre.from * SG} y={(shape.barre.row - 0.5) * FG + 3} fontSize="8.5" fontWeight="600" textAnchor="middle" fill="#fff">1</text>
+          </g>
+        )}
         {shape.muted.map((s) => <text key={s} x={s * SG} y="-8" fontSize="10" textAnchor="middle" fill="#6b6b76">×</text>)}
         {shape.dots.map((d, i) => (
           <g key={i}>
