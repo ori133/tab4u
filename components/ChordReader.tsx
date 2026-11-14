@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { blocks, mapChord, uniqueChords } from "@/lib/song";
+import { blocks, mapChord, song, transposeChord, uniqueChords } from "@/lib/song";
 import ChordDiagram, { hasDiagram, Instrument } from "./ChordDiagram";
 import Reveal from "./Reveal";
 
@@ -154,11 +154,23 @@ export default function ChordReader() {
                   שנה טון{tone !== 0 && <span dir="ltr" className="ms-2 inline-block rounded-md bg-brand-soft px-1.5 py-0.5 font-mono text-xs text-brand">{`${tone > 0 ? "+" : ""}${tone}`}</span>}
                 </Row>
                 {toneOpen && (
-                  <div className="absolute inset-x-0 top-full z-20 mt-1.5 grid grid-cols-4 gap-1 rounded-2xl border border-black/5 bg-white p-2 shadow-xl">
-                    {TONES.map((t) => (
-                      <button key={t} dir="ltr" onClick={() => { setTone(t); setToneOpen(false); }}
-                        className={`rounded-xl py-2 font-mono text-xs transition ${t === tone ? "bg-brand text-white" : "hover:bg-white"}`}>{t > 0 ? `+${t}` : t}</button>
-                    ))}
+                  <div className="absolute inset-x-0 top-full z-20 mt-2 rounded-2xl border border-black/5 bg-white p-3 shadow-[0_24px_50px_-16px_rgba(30,40,80,.35)]">
+                    <div className="mb-2.5 flex items-center justify-between px-1 text-xs text-muted">
+                      <span>בחרו טון (בטונים)</span>
+                      <button onClick={() => { setTone(0); setToneOpen(false); }} className="text-brand hover:underline">איפוס</button>
+                    </div>
+                    <div dir="ltr" className="grid grid-cols-4 gap-1.5">
+                      {TONES.map((t) => {
+                        const on = t === tone;
+                        return (
+                          <button key={t} onClick={() => { setTone(t); setToneOpen(false); }} aria-pressed={on}
+                            className={`flex flex-col items-center rounded-xl py-2 transition active:scale-95 ${on ? "bg-brand text-white shadow-[0_8px_16px_-6px_rgba(46,124,246,.8)]" : "bg-black/[.035] hover:bg-brand-soft"}`}>
+                            <span className="font-mono text-sm font-medium">{t > 0 ? `+${t}` : t}</span>
+                            <span className={`font-mono text-[10px] ${on ? "text-white/80" : "text-muted"}`}>{transposeChord(song.key, Math.round(t * 2), true)}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
                 )}
               </div>
