@@ -41,6 +41,7 @@ export default function ChordReader() {
   const [toneOpen, setToneOpen] = useState(false);
   const [size, setSize] = useState(20);
   const [showDiagrams, setShowDiagrams] = useState(false);
+  const [picked, setPicked] = useState<string | null>(null);
   const [inst, setInst] = useState<Instrument>("guitar");
   const [auto, setAuto] = useState(false);
   const [speed, setSpeed] = useState(3);
@@ -51,6 +52,8 @@ export default function ChordReader() {
   const chords = uniqueChords(steps, simple);
   const words = inst === "words";
   const diagInst: Instrument = inst === "words" ? "guitar" : inst;
+
+  useEffect(() => { setPicked(null); }, [tone, simple, inst]);
 
   useEffect(() => {
     if (!auto) return;
@@ -92,11 +95,21 @@ export default function ChordReader() {
           <article className="glass rounded-3xl p-6 sm:p-10" aria-label="אקורדים לשיר">
             <div className="mb-8 flex flex-wrap items-center gap-2 border-b border-black/5 pb-6 print:hidden">
               <span className="text-xs text-muted">אקורדים בשיר:</span>
-              {chords.map((c) => <span key={c} dir="ltr" className="rounded-lg bg-brand-soft px-2.5 py-1 font-mono text-xs text-brand">{c}</span>)}
+              {chords.map((c) => (
+                <button key={c} type="button" dir="ltr" onClick={() => setPicked(picked === c ? null : c)} aria-label={`איך מנגנים ${c}`}
+                  className={`rounded-lg px-2.5 py-1.5 font-mono text-xs transition active:scale-95 ${picked === c ? "bg-brand text-white" : "bg-brand-soft text-brand hover:bg-brand hover:text-white"}`}>{c}</button>
+              ))}
+              {!words && (
+                <button type="button" onClick={() => setShowDiagrams(!showDiagrams)} aria-pressed={showDiagrams}
+                  className={`ms-auto rounded-full border px-3.5 py-1.5 text-xs font-medium transition active:scale-95 ${showDiagrams ? "border-brand bg-brand text-white" : "border-black/10 bg-white/70 hover:bg-white"}`}>
+                  {showDiagrams ? "הסתר תרשימים" : "הצג תרשימי אקורדים"}
+                </button>
+              )}
+              <p className="basis-full text-xs text-muted md:hidden">הקישו על אקורד כדי לראות איך מנגנים אותו.</p>
             </div>
 
             {showDiagrams && !words && (
-              <div className="mb-8 flex flex-wrap justify-center gap-5 rounded-2xl bg-white/60 p-5 print:mb-2 print:gap-2 print:p-0">
+              <div className="mb-8 flex flex-wrap justify-center gap-x-3 gap-y-4 rounded-2xl bg-white/60 p-4 sm:gap-5 sm:p-5 print:mb-2 print:gap-2 print:p-0">
                 {chords.some((c) => hasDiagram(c, diagInst))
                   ? chords.map((c) => <ChordDiagram key={c} chord={c} inst={diagInst} />)
                   : <p className="text-sm text-muted">אין תרשימי אקורדים למקשים שנבחרו.</p>}
@@ -118,7 +131,7 @@ export default function ChordReader() {
                             <span dir="ltr" className="group relative h-[1.75em] text-start">
                               {c && (bar
                                 ? <span className="px-1.5 font-mono text-[0.72em] text-black/25">|</span>
-                                : <span className="cursor-default rounded-md bg-brand-soft px-1.5 py-0.5 font-mono text-[0.72em] text-brand transition group-hover:bg-brand group-hover:text-white">{c}</span>)}
+                                : <button type="button" onClick={() => setPicked(picked === c ? null : c)} aria-label={`איך מנגנים ${c}`} className={`rounded-md px-1.5 py-0.5 font-mono text-[0.72em] transition active:scale-95 group-hover:bg-brand group-hover:text-white ${picked === c ? "bg-brand text-white" : "bg-brand-soft text-brand"}`}>{c}</button>)}
                               {c && !bar && hasDiagram(c, diagInst) && (
                                 <span className="glass pointer-events-none absolute start-1/2 top-full z-30 mt-1 hidden -translate-x-1/2 rounded-2xl bg-white p-3 md:group-hover:block">
                                   <ChordDiagram chord={c} inst={diagInst} />
@@ -221,6 +234,17 @@ export default function ChordReader() {
         <span dir="ltr" className="w-9 text-center font-mono text-xs text-brand">{tone > 0 ? "+" : ""}{tone}</span>
         <button onClick={() => setTone(Math.min(3, tone + 0.5))} aria-label="העלה טון" className="grid size-11 place-items-center rounded-full text-xl">+</button>
       </div>
+
+      {picked && !words && hasDiagram(picked, diagInst) && (
+        <div role="dialog" aria-label={`איך מנגנים ${picked}`} className="fixed inset-x-3 bottom-[84px] z-50 flex items-center gap-4 rounded-3xl border border-black/5 bg-white p-4 pe-14 shadow-[0_20px_50px_-12px_rgba(30,40,80,.35)] md:hidden print:hidden">
+          <ChordDiagram chord={picked} inst={diagInst} />
+          <div className="min-w-0 text-sm text-muted">
+            <div className="mb-1 text-xs">{diagInst === "guitar" ? "גיטרה" : diagInst === "piano" ? "פסנתר" : "יוקולילי"}</div>
+            <p>החליפו כלי בעמודת הכלים למטה.</p>
+          </div>
+          <button onClick={() => setPicked(null)} aria-label="סגור" className="absolute end-3 top-3 grid size-9 place-items-center rounded-full bg-black/5 text-lg leading-none transition active:scale-95">×</button>
+        </div>
+      )}
     </section>
   );
 }

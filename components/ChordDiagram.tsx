@@ -125,7 +125,7 @@ function Grid({ shape }: { shape: Shape }) {
   const h = FG * ROWS;
   const pad = { l: 22, r: 34, t: 26, b: 8 };
   return (
-    <svg viewBox={`0 0 ${w + pad.l + pad.r} ${h + pad.t + pad.b}`} className="h-32 w-auto overflow-visible" aria-hidden>
+    <svg viewBox={`0 0 ${w + pad.l + pad.r} ${h + pad.t + pad.b}`} className="h-24 w-auto overflow-visible sm:h-32" aria-hidden>
       <g transform={`translate(${pad.l} ${pad.t})`}>
         {Array.from({ length: shape.strings }, (_, i) => <line key={i} x1={i * SG} x2={i * SG} y1="0" y2={h} stroke="#9aa3b5" strokeWidth="1" />)}
         {Array.from({ length: ROWS + 1 }, (_, i) => (
@@ -168,7 +168,7 @@ function Piano({ chord }: { chord: string }) {
   const blacks: [number, number][] = [];
   for (let o = 0; o < 2; o++) [[1, 0], [3, 1], [6, 3], [8, 4], [10, 5]].forEach(([n, wi]) => blacks.push([o * 12 + n, o * 7 + wi]));
   return (
-    <svg viewBox="0 0 112 56" className="h-20 w-auto" aria-hidden>
+    <svg viewBox="0 0 112 56" className="h-14 w-auto sm:h-20" aria-hidden>
       {keys.map((k, i) => <rect key={k} x={i * 8} y="4" width="8" height="48" rx="1.5" fill={on.has(k) ? "#2e7cf6" : "#fff"} stroke="#9aa3b5" strokeWidth=".8" />)}
       {blacks.map(([k, wi]) => <rect key={k} x={wi * 8 + 5.4} y="4" width="5.2" height="29" rx="1" fill={on.has(k) ? "#1d5fd1" : "#16161c"} />)}
     </svg>
