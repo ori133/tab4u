@@ -128,10 +128,10 @@ export default function ChordReader() {
                       return (
                         <span key={gi} className="inline-flex flex-col">
                           {!words && (
-                            <span dir="ltr" className="group relative h-[1.75em] text-start">
+                            <span className="group relative h-[1.75em] text-start">
                               {c && (bar
-                                ? <span className="px-1.5 font-mono text-[0.72em] text-black/25">|</span>
-                                : <button type="button" onClick={() => setPicked(picked === c ? null : c)} aria-label={`איך מנגנים ${c}`} className={`rounded-md px-1.5 py-0.5 font-mono text-[0.72em] transition active:scale-95 group-hover:bg-brand group-hover:text-white ${picked === c ? "bg-brand text-white" : "bg-brand-soft text-brand"}`}>{c}</button>)}
+                                ? <span dir="ltr" className="px-1.5 font-mono text-[0.72em] text-black/25">|</span>
+                                : <button type="button" dir="ltr" onClick={() => setPicked(picked === c ? null : c)} aria-label={`איך מנגנים ${c}`} className={`rounded-md px-1.5 py-0.5 font-mono text-[0.72em] transition active:scale-95 group-hover:bg-brand group-hover:text-white ${picked === c ? "bg-brand text-white" : "bg-brand-soft text-brand"}`}>{c}</button>)}
                               {c && !bar && hasDiagram(c, diagInst) && (
                                 <span className="glass pointer-events-none absolute start-1/2 top-full z-30 mt-1 hidden -translate-x-1/2 rounded-2xl bg-white p-3 md:group-hover:block">
                                   <ChordDiagram chord={c} inst={diagInst} />
