@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { blocks, mapChord, song, transposeChord, uniqueChords } from "@/lib/song";
 import ChordDiagram, { hasDiagram, Instrument } from "./ChordDiagram";
 import Reveal from "./Reveal";
+import { useSettings } from "@/lib/settings";
 
 const TONES = [-2.5, -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2, 2.5, 3];
 
@@ -36,11 +37,10 @@ function Row({ icon, active, children, ...p }: { icon: React.ReactNode; active?:
 }
 
 export default function ChordReader() {
-  const [tone, setTone] = useState(0);
+  const { tone, setTone, simple, setSimple } = useSettings();
   const [toneOpen, setToneOpen] = useState(false);
   const [size, setSize] = useState(20);
   const [showDiagrams, setShowDiagrams] = useState(false);
-  const [simple, setSimple] = useState(false);
   const [inst, setInst] = useState<Instrument>("guitar");
   const [auto, setAuto] = useState(false);
   const [speed, setSpeed] = useState(3);
@@ -147,7 +147,7 @@ export default function ChordReader() {
               </div>
 
               <Row icon={icons.guitar} active={showDiagrams} onClick={() => setShowDiagrams((v) => !v)}>{showDiagrams ? "הסתר אקורדים" : "הצג אקורדים"}</Row>
-              <Row icon={icons.simplify} active={simple} onClick={() => setSimple((v) => !v)}>{simple ? "אקורדים מקוריים" : "פשט אקורדים"}</Row>
+              <Row icon={icons.simplify} active={simple} onClick={() => setSimple(!simple)}>{simple ? "אקורדים מקוריים" : "פשט אקורדים"}</Row>
 
               <div className="relative">
                 <Row icon={<span className={`block transition ${toneOpen ? "rotate-180" : ""}`}>{icons.chev}</span>} onClick={() => setToneOpen((v) => !v)} aria-expanded={toneOpen}>
@@ -217,9 +217,9 @@ export default function ChordReader() {
         <button onClick={() => setSize((v) => Math.max(14, v - 2))} aria-label="הקטן את הגופן" className="grid size-11 place-items-center rounded-full text-xs font-medium">א</button>
         <button onClick={() => setSize((v) => Math.min(36, v + 2))} aria-label="הגדל את הגופן" className="grid size-11 place-items-center rounded-full text-xl font-medium">א</button>
         <span className="h-6 w-px bg-black/10" />
-        <button onClick={() => setTone((t) => Math.max(-2.5, t - 0.5))} aria-label="הורד טון" className="grid size-11 place-items-center rounded-full text-xl">−</button>
+        <button onClick={() => setTone(Math.max(-2.5, tone - 0.5))} aria-label="הורד טון" className="grid size-11 place-items-center rounded-full text-xl">−</button>
         <span dir="ltr" className="w-9 text-center font-mono text-xs text-brand">{tone > 0 ? "+" : ""}{tone}</span>
-        <button onClick={() => setTone((t) => Math.min(3, t + 0.5))} aria-label="העלה טון" className="grid size-11 place-items-center rounded-full text-xl">+</button>
+        <button onClick={() => setTone(Math.min(3, tone + 0.5))} aria-label="העלה טון" className="grid size-11 place-items-center rounded-full text-xl">+</button>
       </div>
     </section>
   );

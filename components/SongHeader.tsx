@@ -1,7 +1,11 @@
+"use client";
+import { EASY_TONE, useSettings } from "@/lib/settings";
 import { song } from "@/lib/song";
 import Pill from "./Pill";
 
 export default function SongHeader() {
+  const { tone, setTone } = useSettings();
+  const easy = tone === EASY_TONE;
   return (
     <section className="glass relative overflow-hidden rounded-[2rem] p-5 sm:p-7 print:p-0">
       <div className="pointer-events-none absolute -start-20 -top-24 size-72 print:hidden rounded-full bg-gradient-to-br from-lime/40 to-transparent blur-2xl" />
@@ -27,8 +31,11 @@ export default function SongHeader() {
             <dd className="flex items-center gap-1.5"><span className="text-brand">★</span>{song.rating}<span className="text-muted">מהשירים האהובים</span></dd>
           </dl>
           <div className="mt-5 flex flex-wrap gap-3 print:hidden">
-            <button className="rounded-full bg-brand px-7 py-3 text-sm font-medium text-white shadow-[0_12px_24px_-8px_rgba(46,124,246,.7)] transition hover:brightness-110 active:scale-95">
-              גרסה קלה
+            <button
+              onClick={() => { setTone(easy ? 0 : EASY_TONE); document.getElementById("reader")?.scrollIntoView({ behavior: "smooth", block: "start" }); }}
+              aria-pressed={easy}
+              className={`rounded-full px-7 py-3 text-sm font-medium transition active:scale-95 ${easy ? "border border-brand bg-brand-soft text-brand" : "bg-brand text-white shadow-[0_12px_24px_-8px_rgba(46,124,246,.7)] hover:brightness-110"}`}>
+              {easy ? "גרסה מקורית" : "גרסה קלה (Am)"}
             </button>
             <button className="rounded-full border border-black/10 bg-white/70 px-7 py-3 text-sm font-medium transition hover:bg-white active:scale-95">
               הוספה לשירים שלי
