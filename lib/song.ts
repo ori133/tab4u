@@ -1,8 +1,12 @@
-export type Seg = { chord?: string; text: string };
-export type Line = Seg[];
-export type Section = { label: string; lines: Line[] };
+import data from "./songData.json";
 
-// טקסט דמה מקורי בלבד, כדי לא להעתיק מילים מוגנות בזכויות יוצרים.
+export type Seg = { chord?: string; text?: string };
+export type Block = { t: "label"; x: string } | { t: "line"; s: Seg[] } | { t: "gap" };
+
+// נתוני השיר נשלפו מהדף המקורי ב-Tab4U לצורך הדגמה פרטית בלבד.
+export const blocks = data.blocks as Block[];
+export const shapes = data.shapes as Record<string, string>;
+
 export const song = {
   title: "לב לבן",
   artist: "שולי רנד",
@@ -10,37 +14,6 @@ export const song = {
   tags: ["פופ", "שירים חסידיים"],
   key: "Cm",
   rating: 4.69,
-  sections: [
-    {
-      label: "פתיחה",
-      lines: [[{ chord: "Cm", text: "" }]],
-    },
-    {
-      label: "בית",
-      lines: [
-        [{ chord: "Cm", text: "שורה " }, { chord: "Bb", text: "ראשונה " }, { chord: "Eb", text: "של " }, { chord: "Bb", text: "דוגמה" }],
-        [{ chord: "Cm", text: "טקסט " }, { chord: "Bb", text: "זמני " }, { chord: "Gm", text: "לעיצוב" }],
-        [{ chord: "Cm", text: "כאן " }, { chord: "Bb", text: "יבואו " }, { chord: "Eb", text: "המילים " }, { chord: "Bb", text: "האמיתיות" }],
-        [{ chord: "Cm", text: "מהאתר " }, { chord: "Bb", text: "המקורי " }, { chord: "Eb", text: "בזמן " }, { chord: "Bb", text: "אמת" }],
-      ],
-    },
-    {
-      label: "פזמון",
-      lines: [
-        [{ chord: "Fm", text: "מילה " }, { chord: "Cm", text: "אחת " }, { chord: "Bb", text: "לכל " }, { chord: "Gm", text: "אקורד" }],
-        [{ chord: "Fm", text: "ועוד " }, { chord: "Cm", text: "מילה " }, { chord: "Bb", text: "בין " }, { chord: "Eb", text: "שניים" }],
-        [{ chord: "Fm", text: "קריאה " }, { chord: "Cm", text: "נוחה " }, { chord: "Bb", text: "בכל " }, { chord: "Gm", text: "גודל" }],
-        [{ chord: "Ab", text: "וגלילה " }, { chord: "Bb", text: "אוטומטית " }, { chord: "Ab", text: "לכל " }, { chord: "Cm", text: "קצב" }],
-      ],
-    },
-    {
-      label: "גשר",
-      lines: [
-        [{ chord: "Eb", text: "מעבר " }, { chord: "Bb", text: "קצר " }, { chord: "Cm", text: "לפני " }, { chord: "Ab", text: "החזרה" }],
-        [{ chord: "Fm", text: "ושוב " }, { chord: "Bb", text: "לפזמון " }, { chord: "Cm", text: "הגדול" }],
-      ],
-    },
-  ] as Section[],
 };
 
 const SHARP = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
@@ -55,8 +28,20 @@ export function transposeChord(chord: string, steps: number, preferFlat: boolean
   });
 }
 
-export function uniqueChords(steps: number): string[] {
+export function simplifyChord(chord: string): string {
+  const base = chord.split("/")[0];
+  const m = base.match(/^([A-G][#b]?)(m(?!aj))?/);
+  return m ? m[1] + (m[2] ?? "") : chord;
+}
+
+export function mapChord(c: string, steps: number, simple: boolean): string {
+  if (c === "|") return c;
+  const t = transposeChord(c, steps, true);
+  return simple ? simplifyChord(t) : t;
+}
+
+export function uniqueChords(steps: number, simple = false): string[] {
   const set = new Set<string>();
-  song.sections.forEach((s) => s.lines.forEach((l) => l.forEach((g) => g.chord && set.add(transposeChord(g.chord, steps, true)))));
+  blocks.forEach((b) => b.t === "line" && b.s.forEach((g) => g.chord && g.chord !== "|" && set.add(mapChord(g.chord!, steps, simple))));
   return [...set];
 }

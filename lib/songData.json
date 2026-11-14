@@ -1,0 +1,954 @@
+{
+ "blocks": [
+  {
+   "t": "label",
+   "x": "פתיחה:"
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "chord": "|"
+    },
+    {
+     "chord": "Cm"
+    },
+    {
+     "chord": "|"
+    }
+   ]
+  },
+  {
+   "t": "gap"
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "chord": "Cm",
+     "text": "אהוב"
+    },
+    {
+     "chord": "Bb",
+     "text": "תי פת"
+    },
+    {
+     "chord": "Eb",
+     "text": "חי את ה"
+    },
+    {
+     "chord": "Bb",
+     "text": "דלת"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "ל"
+    },
+    {
+     "chord": "Cm",
+     "text": "איש שה"
+    },
+    {
+     "chord": "Bb",
+     "text": "גיע מ"
+    },
+    {
+     "chord": "Gm",
+     "text": "לב המדבר"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "chord": "Cm",
+     "text": "ל ב"
+    },
+    {
+     "chord": "Bb",
+     "text": "שי שמל"
+    },
+    {
+     "chord": "Eb",
+     "text": "תך זאת "
+    },
+    {
+     "chord": "Bb",
+     "text": "הנהדרת"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "לק"
+    },
+    {
+     "chord": "Cm",
+     "text": "ראת איש חו"
+    },
+    {
+     "chord": "Bb",
+     "text": "לם שפו"
+    },
+    {
+     "chord": "Eb",
+     "text": "סע ו"
+    },
+    {
+     "chord": "Bb",
+     "text": "שר"
+    }
+   ]
+  },
+  {
+   "t": "gap"
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "chord": "Fm",
+     "text": "אהוב"
+    },
+    {
+     "chord": "Cm",
+     "text": "תי בעו"
+    },
+    {
+     "chord": "Bb",
+     "text": "לם אין כ"
+    },
+    {
+     "chord": "Gm",
+     "text": "מוה"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "chord": "Fm",
+     "text": "את לעו"
+    },
+    {
+     "chord": "Cm",
+     "text": "לם לי א"
+    },
+    {
+     "chord": "Bb",
+     "text": "חת יחי"
+    },
+    {
+     "chord": "Eb",
+     "text": "דה"
+    },
+    {
+     "chord": "Bb",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "chord": "Fm",
+     "text": "אהוב"
+    },
+    {
+     "chord": "Cm",
+     "text": "תי בנ"
+    },
+    {
+     "chord": "Bb",
+     "text": "מוך בג"
+    },
+    {
+     "chord": "Gm",
+     "text": "בוה"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "chord": "Ab",
+     "text": "ספר פ"
+    },
+    {
+     "chord": "Bb",
+     "text": "תוח "
+    },
+    {
+     "chord": "Ab",
+     "text": "את לי חי"
+    },
+    {
+     "chord": "Bb",
+     "text": "דה"
+    },
+    {
+     "chord": "Cm",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "t": "gap"
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "מול נ"
+    },
+    {
+     "chord": "Eb",
+     "text": "רות"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "זו"
+    },
+    {
+     "chord": "Gm",
+     "text": "הרת באור יק"
+    },
+    {
+     "chord": "Cm",
+     "text": "רות"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "פ"
+    },
+    {
+     "chord": "Ab",
+     "text": "נייך בחן עטו"
+    },
+    {
+     "chord": "Eb",
+     "text": "רות"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "עומד ושו"
+    },
+    {
+     "chord": "Bb",
+     "text": "אל"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "מה ז"
+    },
+    {
+     "chord": "Eb",
+     "text": "כיתי"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "אח"
+    },
+    {
+     "chord": "Gm",
+     "text": "רי שאמרתי נו"
+    },
+    {
+     "chord": "Cm",
+     "text": "אש"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "י"
+    },
+    {
+     "chord": "Ab",
+     "text": "מים לא הייתי מ"
+    },
+    {
+     "chord": "Eb",
+     "text": "מש"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "איך באת לי בז"
+    },
+    {
+     "chord": "Bb",
+     "text": "מן"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "לב פ"
+    },
+    {
+     "chord": "Cm",
+     "text": "תוח הוא "
+    },
+    {
+     "chord": "Bb",
+     "text": "לב ל"
+    },
+    {
+     "chord": "Cm",
+     "text": "בן"
+    }
+   ]
+  },
+  {
+   "t": "gap"
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "chord": "Cm",
+     "text": "אהוב"
+    },
+    {
+     "chord": "Bb",
+     "text": "תי בשנ"
+    },
+    {
+     "chord": "Eb",
+     "text": "תך את צו"
+    },
+    {
+     "chord": "Bb",
+     "text": "חקת"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "א"
+    },
+    {
+     "chord": "Cm",
+     "text": "ני הוא ה"
+    },
+    {
+     "chord": "Bb",
+     "text": "איש בגל"
+    },
+    {
+     "chord": "Gm",
+     "text": "לו את שמחה"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "chord": "Cm",
+     "text": "אהוב"
+    },
+    {
+     "chord": "Bb",
+     "text": "תי פת"
+    },
+    {
+     "chord": "Eb",
+     "text": "חי את ה"
+    },
+    {
+     "chord": "Bb",
+     "text": "דלת"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "א"
+    },
+    {
+     "chord": "Cm",
+     "text": "ני הע"
+    },
+    {
+     "chord": "Bb",
+     "text": "מל ו"
+    },
+    {
+     "chord": "Eb",
+     "text": "את לי בר"
+    },
+    {
+     "chord": "Bb",
+     "text": "כה"
+    }
+   ]
+  },
+  {
+   "t": "gap"
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "chord": "Fm",
+     "text": "אהוב"
+    },
+    {
+     "chord": "Cm",
+     "text": "תי בעו"
+    },
+    {
+     "chord": "Bb",
+     "text": "לם אין כ"
+    },
+    {
+     "chord": "Gm",
+     "text": "מוה"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "chord": "Fm",
+     "text": "בין חד"
+    },
+    {
+     "chord": "Cm",
+     "text": "ריה א"
+    },
+    {
+     "chord": "Bb",
+     "text": "לך מסו"
+    },
+    {
+     "chord": "Eb",
+     "text": "בב"
+    },
+    {
+     "chord": "Bb",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "chord": "Fm",
+     "text": "אהוב"
+    },
+    {
+     "chord": "Cm",
+     "text": "תי בנ"
+    },
+    {
+     "chord": "Bb",
+     "text": "מוך בג"
+    },
+    {
+     "chord": "Gm",
+     "text": "בוה"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "א"
+    },
+    {
+     "chord": "Ab",
+     "text": "מת על שפ"
+    },
+    {
+     "chord": "Bb",
+     "text": "תיה "
+    },
+    {
+     "chord": "Ab",
+     "text": "דבש וח"
+    },
+    {
+     "chord": "Bb",
+     "text": "לב"
+    },
+    {
+     "chord": "Cm",
+     "text": ""
+    }
+   ]
+  },
+  {
+   "t": "gap"
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "מול נ"
+    },
+    {
+     "chord": "Eb",
+     "text": "רות"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "זו"
+    },
+    {
+     "chord": "Gm",
+     "text": "הרת באור יק"
+    },
+    {
+     "chord": "Cm",
+     "text": "רות"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "פ"
+    },
+    {
+     "chord": "Ab",
+     "text": "נייך בחן עטו"
+    },
+    {
+     "chord": "Eb",
+     "text": "רות"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "עומד ושו"
+    },
+    {
+     "chord": "Bb",
+     "text": "אל"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "מה ז"
+    },
+    {
+     "chord": "Eb",
+     "text": "כיתי"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "אח"
+    },
+    {
+     "chord": "Gm",
+     "text": "רי שאמרתי נו"
+    },
+    {
+     "chord": "Cm",
+     "text": "אש"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "י"
+    },
+    {
+     "chord": "Ab",
+     "text": "מים לא הייתי מ"
+    },
+    {
+     "chord": "Eb",
+     "text": "מש"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "איך באת לי בז"
+    },
+    {
+     "chord": "Bb",
+     "text": "מן"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "לב פ"
+    },
+    {
+     "chord": "Cm",
+     "text": "תוח הוא "
+    },
+    {
+     "chord": "Bb",
+     "text": "לב ל"
+    },
+    {
+     "chord": "Am",
+     "text": "בן"
+    }
+   ]
+  },
+  {
+   "t": "gap"
+  },
+  {
+   "t": "gap"
+  },
+  {
+   "t": "label",
+   "x": "מעבר:"
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "chord": "|"
+    },
+    {
+     "chord": "C/E"
+    },
+    {
+     "chord": "|"
+    },
+    {
+     "chord": "F"
+    },
+    {
+     "chord": "|"
+    },
+    {
+     "chord": "Em"
+    },
+    {
+     "chord": "|"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "chord": "|"
+    },
+    {
+     "chord": "G"
+    },
+    {
+     "chord": "|"
+    },
+    {
+     "chord": "F"
+    },
+    {
+     "chord": "|"
+    },
+    {
+     "chord": "Em"
+    },
+    {
+     "chord": "|"
+    },
+    {
+     "chord": "Dm"
+    },
+    {
+     "chord": "|"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "chord": "|"
+    },
+    {
+     "chord": "Eb/G"
+    },
+    {
+     "chord": "|"
+    },
+    {
+     "chord": "Ab"
+    },
+    {
+     "chord": "|"
+    },
+    {
+     "chord": "Gm"
+    },
+    {
+     "chord": "|"
+    },
+    {
+     "chord": "Cm"
+    },
+    {
+     "chord": "|"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "chord": "|"
+    },
+    {
+     "chord": "Bb"
+    },
+    {
+     "chord": "|"
+    },
+    {
+     "chord": "Ab"
+    },
+    {
+     "chord": "|"
+    },
+    {
+     "chord": "G"
+    },
+    {
+     "chord": "|"
+    },
+    {
+     "chord": "Fm"
+    },
+    {
+     "chord": "|"
+    }
+   ]
+  },
+  {
+   "t": "gap"
+  },
+  {
+   "t": "gap"
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "מול נ"
+    },
+    {
+     "chord": "Eb",
+     "text": "רות"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "זו"
+    },
+    {
+     "chord": "Gm",
+     "text": "הרת באור יק"
+    },
+    {
+     "chord": "Cm",
+     "text": "רות"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "פ"
+    },
+    {
+     "chord": "Ab",
+     "text": "נייך בחן עטו"
+    },
+    {
+     "chord": "Eb",
+     "text": "רות"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "עומד ושו"
+    },
+    {
+     "chord": "Bb",
+     "text": "אל"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "מה ז"
+    },
+    {
+     "chord": "Eb",
+     "text": "כיתי"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "אח"
+    },
+    {
+     "chord": "Gm",
+     "text": "רי שאמרתי נו"
+    },
+    {
+     "chord": "Cm",
+     "text": "אש"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "י"
+    },
+    {
+     "chord": "Ab",
+     "text": "מים לא הייתי מ"
+    },
+    {
+     "chord": "Eb",
+     "text": "מש"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "איך באת לי בז"
+    },
+    {
+     "chord": "Bb",
+     "text": "מן"
+    }
+   ]
+  },
+  {
+   "t": "line",
+   "s": [
+    {
+     "text": "לב פ"
+    },
+    {
+     "chord": "Cm",
+     "text": "תוח הוא "
+    },
+    {
+     "chord": "Bb",
+     "text": "לב ל"
+    },
+    {
+     "chord": "Cm",
+     "text": "בן"
+    }
+   ]
+  },
+  {
+   "t": "gap"
+  },
+  {
+   "t": "gap"
+  }
+ ],
+ "shapes": {
+  "Cm": "S5F3E1`S4F5E3`S3F5E4`S2F4E2`S1F3E1",
+  "Bb": "S5F1E1`S4F3E2`S3F3E3`S2F3E4`S1F1E1",
+  "Eb": "S5F6E1`S4F8E2`S3F8E3`S2F8E4`S1F6E1",
+  "Gm": "S6F3E1`S5F5E3`S4F5E4`S3F3E1`S2F3E1`S1F3E1",
+  "Fm": "S6F1E1`S5F3E3`S4F3E4`S3F1E1`S2F1E1`S1F1E1",
+  "Ab": "S6F4E1`S5F6E3`S4F6E4`S3F5E2`S2F4E1`S1F4E1",
+  "Am": "S5F0E0`S4F2E2`S3F2E3`S2F1E1`S1F0E0",
+  "Em": "S6F0E0`S5F2E2`S4F2E3`S3F0E0`S2F0E0`S1F0E0",
+  "F": "S6F1E1`S5F3E3`S4F3E4`S3F2E2`S2F1E1`S1F1E1",
+  "C/E": "S6F0E0`S5F3E3`S4F2E2`S3F0E0`S2F1E1`S1F0E0",
+  "Dm": "S4F0E0`S3F2E2`S2F3E3`S1F1E1",
+  "G": "S6F3E2`S5F2E1`S4F0E0`S3F0E0`S2F3E3`S1F3E4",
+  "Eb/G": "S6F3Eu`S5F1Eu`S4F1Eu`S3F0Eu"
+ }
+}
