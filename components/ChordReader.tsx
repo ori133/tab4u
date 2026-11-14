@@ -2,8 +2,6 @@
 import { useEffect, useRef, useState } from "react";
 import { song, transposeChord, uniqueChords } from "@/lib/song";
 import Reveal from "./Reveal";
-import Pill from "./Pill";
-import ScrollWords from "./ScrollWords";
 
 function Btn({ active, children, ...p }: { active?: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
@@ -55,14 +53,9 @@ export default function ChordReader() {
   const chords = uniqueChords(steps);
 
   return (
-    <section id="reader" className="mx-auto max-w-6xl px-5 py-20">
-      <div className="mb-12 text-center">
-        <Reveal><Pill>האקורדים</Pill></Reveal>
-        <ScrollWords text="נגנו עם השיר, בקצב שלכם" className="mt-5 font-display text-4xl leading-tight tracking-tight sm:text-5xl" />
-      </div>
-
-      <div className="grid gap-6 lg:grid-cols-[1fr_280px]">
-        <Reveal>
+    <section id="reader" className="mt-6">
+      <div className="grid gap-5 lg:grid-cols-[1fr_280px]">
+        <Reveal className="">
           <article className="glass rounded-3xl p-6 sm:p-10" aria-label={`אקורדים ל${song.title}`}>
             <div className="mb-8 flex flex-wrap items-center gap-2 border-b border-black/5 pb-6">
               <span className="text-xs text-muted">אקורדים בשיר:</span>
@@ -98,8 +91,8 @@ export default function ChordReader() {
           </article>
         </Reveal>
 
-        <Reveal delay={0.15}>
-          <aside className="glass sticky top-24 space-y-3 rounded-3xl p-4" aria-label="כלי נגינה">
+        <Reveal delay={0.1} className="">
+          <aside className="glass top-24 space-y-3 rounded-3xl p-4 lg:sticky" aria-label="כלי נגינה">
             <div className="grid grid-cols-3 items-center gap-2">
               <Btn onClick={() => setSize((s) => Math.max(14, s - 2))} aria-label="הקטן טקסט"><span className="text-xs">א</span></Btn>
               <span className="text-center font-mono text-xs text-muted">{size}px</span>

@@ -1,19 +1,25 @@
 import Nav from "@/components/Nav";
-import Hero from "@/components/Hero";
-import InfoList from "@/components/InfoList";
+import SongHeader from "@/components/SongHeader";
 import ChordReader from "@/components/ChordReader";
-import ToolCards from "@/components/ToolCards";
+import RelatedSongs from "@/components/RelatedSongs";
 import Footer from "@/components/Footer";
+import { song } from "@/lib/song";
 
 export default function Page() {
   return (
-    <main>
+    <>
       <Nav />
-      <Hero />
-      <InfoList />
-      <ChordReader />
-      <ToolCards />
+      <main className="mx-auto max-w-6xl px-3 pt-6 sm:px-6">
+        <nav aria-label="פירורי לחם" className="mb-5 flex items-center gap-2 px-2 text-xs text-muted">
+          <a href="#" className="hover:text-ink">ראשי</a><span>‹</span>
+          <a href="#" className="hover:text-ink">{song.artist}</a><span>‹</span>
+          <span className="text-ink">{song.title}</span>
+        </nav>
+        <SongHeader />
+        <ChordReader />
+        <RelatedSongs />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }
