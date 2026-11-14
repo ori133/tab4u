@@ -45,3 +45,30 @@ export function uniqueChords(steps: number, simple = false): string[] {
   blocks.forEach((b) => b.t === "line" && b.s.forEach((g) => g.chord && g.chord !== "|" && set.add(mapChord(g.chord!, steps, simple))));
   return [...set];
 }
+
+// קושי נגינה בגיטרה: 0 פתוח וקל, 3 ברה או שחורות
+const EASY: Record<string, number> = { C: 0, D: 0, E: 0, G: 0, A: 0, Am: 0, Em: 0, Dm: 0, F: 1, Bm: 2 };
+function difficulty(chord: string): number {
+  const m = chord.match(/^([A-G][#b]?)(m(?!aj))?/);
+  return m ? EASY[m[1] + (m[2] ?? "")] ?? 3 : 3;
+}
+
+/** מציע סריג קאפו שמוריד את הקושי הכולל של האקורדים, לפי מספר הפעמים שכל אקורד מנוגן */
+export function suggestCapo(steps: number, simple: boolean): { capo: number; shapes: string[]; before: number; after: number } | null {
+  const counts = new Map<string, number>();
+  blocks.forEach((b) => b.t === "line" && b.s.forEach((g) => {
+    if (g.chord && g.chord !== "|") {
+      const c = mapChord(g.chord, steps, simple);
+      counts.set(c, (counts.get(c) ?? 0) + 1);
+    }
+  }));
+  const score = (capo: number) => [...counts].reduce((a, [c, n]) => a + n * difficulty(transposeChord(c, -capo, true)), 0);
+  const before = score(0);
+  let best = 0, bestScore = before;
+  for (let c = 1; c <= 7; c++) {
+    const sc = score(c);
+    if (sc < bestScore) { best = c; bestScore = sc; }
+  }
+  if (best === 0) return null;
+  return { capo: best, shapes: [...counts.keys()].map((c) => transposeChord(c, -best, true)), before, after: bestScore };
+}

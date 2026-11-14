@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { blocks, mapChord, song, transposeChord, uniqueChords } from "@/lib/song";
+import { blocks, mapChord, song, suggestCapo, transposeChord, uniqueChords } from "@/lib/song";
 import ChordDiagram, { hasDiagram, Instrument } from "./ChordDiagram";
 import Reveal from "./Reveal";
 import { useSettings } from "@/lib/settings";
@@ -37,7 +37,7 @@ function Row({ icon, active, children, ...p }: { icon: React.ReactNode; active?:
 }
 
 export default function ChordReader() {
-  const { tone, setTone, simple, setSimple } = useSettings();
+  const { tone, setTone, simple, setSimple, capo, setCapo } = useSettings();
   const [toneOpen, setToneOpen] = useState(false);
   const [size, setSize] = useState(20);
   const [showDiagrams, setShowDiagrams] = useState(false);
@@ -47,7 +47,9 @@ export default function ChordReader() {
   const speedRef = useRef(speed);
   speedRef.current = speed;
 
-  const steps = Math.round(tone * 2);
+  const soundSteps = Math.round(tone * 2);
+  const suggestion = suggestCapo(soundSteps, simple);
+  const steps = soundSteps - capo; // עם קאפו מציגים צורות אקורדים נמוכות יותר
   const chords = uniqueChords(steps, simple);
   const words = inst === "words";
   const diagInst: Instrument = inst === "words" ? "guitar" : inst;
@@ -90,6 +92,29 @@ export default function ChordReader() {
       <div className="grid gap-5 lg:grid-cols-[1fr_360px] print:block">
         <Reveal>
           <article className="glass rounded-3xl p-6 sm:p-10" aria-label="אקורדים לשיר">
+            {(suggestion || capo > 0) && (
+              <div className="mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-2xl border border-brand/20 bg-brand-soft/60 px-4 py-3 text-sm print:hidden">
+                {capo > 0 ? (
+                  <>
+                    <span className="font-medium text-brand">קאפו בסריג {capo} מופעל</span>
+                    <span className="text-muted">האקורדים מוצגים כצורות הנגינה עם הקאפו</span>
+                    <button onClick={() => setCapo(0)} className="ms-auto rounded-full bg-white px-4 py-1.5 text-xs font-medium shadow-sm transition hover:bg-white/80">בטל קאפו</button>
+                  </>
+                ) : (
+                  suggestion && (
+                    <>
+                      <span className="font-medium text-brand">הצעה: קאפו בסריג {suggestion.capo}</span>
+                      <span dir="ltr" className="flex flex-wrap gap-1.5">
+                        {[...new Set(suggestion.shapes)].map((c) => <span key={c} className="rounded-md bg-white px-1.5 py-0.5 font-mono text-xs text-brand">{c}</span>)}
+                      </span>
+                      <span className="text-muted">צורות קלות יותר, אותו צליל</span>
+                      <button onClick={() => setCapo(suggestion.capo)} className="ms-auto rounded-full bg-brand px-4 py-1.5 text-xs font-medium text-white transition hover:brightness-110 active:scale-95">החל קאפו</button>
+                    </>
+                  )
+                )}
+              </div>
+            )}
+
             <div className="mb-8 flex flex-wrap items-center gap-2 border-b border-black/5 pb-6 print:hidden">
               <span className="text-xs text-muted">אקורדים בשיר:</span>
               {chords.map((c) => <span key={c} dir="ltr" className="rounded-lg bg-brand-soft px-2.5 py-1 font-mono text-xs text-brand">{c}</span>)}
