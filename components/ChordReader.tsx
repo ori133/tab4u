@@ -154,8 +154,8 @@ export default function ChordReader() {
                   שנה טון{tone !== 0 && <span dir="ltr" className="ms-2 inline-block rounded-md bg-brand-soft px-1.5 py-0.5 font-mono text-xs text-brand">{`${tone > 0 ? "+" : ""}${tone}`}</span>}
                 </Row>
                 {toneOpen && (
-                  <div className="absolute start-0 top-full z-20 mt-2 w-[236px] max-w-full rounded-2xl border border-black/5 bg-white p-2.5 shadow-[0_24px_50px_-16px_rgba(30,40,80,.35)]">
-                    <div className="mb-2 flex items-center justify-between px-1 text-xs text-muted">
+                  <div className="absolute start-0 top-full z-20 mt-2 w-[236px] max-w-full rounded-2xl border border-black/[.06] bg-white p-2 shadow-[0_10px_24px_-12px_rgba(30,40,80,.25)]">
+                    <div className="mb-1.5 flex items-center justify-between px-1 text-[11px] text-muted/80">
                       <span>טון</span>
                       <button onClick={() => { setTone(0); setToneOpen(false); }} className="text-brand hover:underline">איפוס</button>
                     </div>
@@ -164,9 +164,9 @@ export default function ChordReader() {
                         const on = t === tone;
                         return (
                           <button key={t} onClick={() => { setTone(t); setToneOpen(false); }} aria-pressed={on}
-                            className={`flex flex-col items-center rounded-lg py-1.5 transition active:scale-95 ${on ? "bg-brand text-white shadow-[0_8px_16px_-6px_rgba(46,124,246,.8)]" : "bg-black/[.035] hover:bg-brand-soft"}`}>
-                            <span className="font-mono text-xs font-medium">{t > 0 ? `+${t}` : t}</span>
-                            <span className={`font-mono text-[10px] ${on ? "text-white/80" : "text-muted"}`}>{transposeChord(song.key, Math.round(t * 2), true)}</span>
+                            className={`flex flex-col items-center rounded-lg py-1.5 transition active:scale-95 ${on ? "bg-brand-soft text-brand" : "text-ink/70 hover:bg-black/[.04]"}`}>
+                            <span className="font-mono text-xs">{t > 0 ? `+${t}` : t}</span>
+                            <span className={`font-mono text-[10px] ${on ? "text-brand/70" : "text-muted/70"}`}>{transposeChord(song.key, Math.round(t * 2), true)}</span>
                           </button>
                         );
                       })}
