@@ -22,7 +22,7 @@ function parseGuitar(code: string) {
 function Grid({ strings, frets, dots, base, muted }: { strings: number; frets: number; dots: { s: number; f: number; e?: string }[]; base: number; muted: number[] }) {
   const w = 14 * (strings - 1);
   return (
-    <svg viewBox={`0 0 ${w + 36} 84`} className="h-24 w-auto" aria-hidden>
+    <svg viewBox={`0 0 ${w + 52} 84`} className="h-24 w-auto" aria-hidden>
       <g transform="translate(18 20)">
         {Array.from({ length: strings }, (_, i) => <line key={i} x1={i * 14} x2={i * 14} y1="0" y2={frets * 11} stroke="#9aa3b5" strokeWidth="1" />)}
         {Array.from({ length: frets + 1 }, (_, i) => <line key={i} x1="0" x2={w} y1={i * 11} y2={i * 11} stroke={i === 0 && base === 1 ? "#0b0b0f" : "#9aa3b5"} strokeWidth={i === 0 && base === 1 ? 2.5 : 1} />)}
@@ -33,7 +33,7 @@ function Grid({ strings, frets, dots, base, muted }: { strings: number; frets: n
             {d.e && d.e !== "0" && d.e !== "u" && <text x={d.s * 14} y={(d.f - 0.5) * 11 + 2.6} fontSize="6.5" textAnchor="middle" fill="#fff">{d.e}</text>}
           </g>
         ))}
-        {base > 1 && <text x={w + 5} y="9" fontSize="7" fill="#6b6b76">{base}</text>}
+        {base > 1 && <text x={w + 9} y="8.5" fontSize="11" fontWeight="700" fill="#2e7cf6" fontFamily="ui-monospace, monospace">{base}<tspan fontSize="7" fontWeight="500" dx="1">fr</tspan></text>}
       </g>
     </svg>
   );
