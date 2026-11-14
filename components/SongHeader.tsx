@@ -8,7 +8,7 @@ export default function SongHeader() {
   const easy = tone === EASY_TONE && simple;
   return (
     <section className="glass relative overflow-hidden rounded-[2rem] p-5 sm:p-7 print:p-0">
-      <div className="pointer-events-none absolute -start-20 -top-24 size-72 print:hidden rounded-full bg-gradient-to-br from-lime/40 to-transparent blur-2xl" />
+      <div className="pointer-events-none absolute -start-20 -top-24 hidden size-72 sm:block print:hidden rounded-full bg-gradient-to-br from-lime/40 to-transparent blur-2xl" />
       <div className="relative grid items-center gap-8 md:grid-cols-[1fr_auto]">
         <div>
           <div className="mb-3 flex flex-wrap gap-2 print:hidden">
