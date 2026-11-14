@@ -90,20 +90,20 @@ export default function ChordReader() {
       <div className="grid gap-5 lg:grid-cols-[1fr_360px] print:block">
         <Reveal>
           <article className="glass rounded-3xl p-6 sm:p-10" aria-label="אקורדים לשיר">
-            <div className="mb-8 flex flex-wrap items-center gap-2 border-b border-black/5 pb-6">
+            <div className="mb-8 flex flex-wrap items-center gap-2 border-b border-black/5 pb-6 print:hidden">
               <span className="text-xs text-muted">אקורדים בשיר:</span>
               {chords.map((c) => <span key={c} dir="ltr" className="rounded-lg bg-brand-soft px-2.5 py-1 font-mono text-xs text-brand">{c}</span>)}
             </div>
 
             {showDiagrams && !words && (
-              <div className="mb-8 flex flex-wrap justify-center gap-5 rounded-2xl bg-white/60 p-5">
+              <div className="mb-8 flex flex-wrap justify-center gap-5 rounded-2xl bg-white/60 p-5 print:mb-2 print:gap-2 print:p-0">
                 {chords.some((c) => hasDiagram(c, diagInst))
                   ? chords.map((c) => <ChordDiagram key={c} chord={c} inst={diagInst} />)
                   : <p className="text-sm text-muted">אין תרשימי אקורדים למקשים שנבחרו.</p>}
               </div>
             )}
 
-            <div className="no-select" style={{ fontSize: size }}>
+            <div className="no-select song-body" style={{ fontSize: size }}>
               {blocks.map((b, bi) => {
                 if (b.t === "gap") return <div key={bi} className="h-[1.2em]" />;
                 if (b.t === "label") return <span key={bi} className="mb-2 mt-1 inline-block rounded-lg bg-black/5 px-2.5 py-1 font-mono text-[0.6em] text-muted">{b.x}</span>;

@@ -41,17 +41,23 @@ body {
   html { scroll-behavior: auto; }
 }
 
-/* הדפסה: רק כותרת השיר, האקורדים והמילים */
+/* הדפסה: כותרת קצרה, האקורדים והמילים בשתי עמודות צפופות כדי לחסוך דפים */
 @media print {
-  @page { margin: 14mm; }
+  @page { size: A4; margin: 10mm; }
   html, body { background: #fff !important; }
+  main { padding: 0 !important; max-width: none !important; }
+  #reader { margin-top: 3mm !important; }
   .glass { background: none !important; box-shadow: none !important; border: 0 !important; backdrop-filter: none !important; }
   /* אנימציות הגילוי משאירות אלמנטים שקופים מחוץ לתצוגה */
   [style*="opacity"] { opacity: 1 !important; transform: none !important; }
   .float-slow { animation: none !important; }
-  article { padding: 0 !important; }
-  article span[class*="bg-brand-soft"] { background: none !important; color: #000 !important; font-weight: 700; padding: 0 .35em !important; }
-  article span[class*="bg-black/5"] { background: none !important; border: 1px solid #999; color: #000 !important; }
-  article, article * { color: #000; }
-  section { break-inside: auto; }
+  article { padding: 0 !important; border-radius: 0 !important; }
+  .song-body { font-size: 9.2pt !important; column-count: 2; column-gap: 10mm; column-rule: 1px solid #ddd; line-height: 1.2; }
+  .song-body > div { break-inside: avoid; }
+  .song-body > div.h-\[1\.2em\] { height: .5em !important; }
+  .song-body > span { break-after: avoid; margin: 0 0 1mm !important; }
+  .song-body span[class*="h-[1.75em]"] { height: 1.35em !important; }
+  article span[class*="bg-brand-soft"] { background: none !important; color: #000 !important; font-weight: 700; padding: 0 .3em !important; }
+  article span[class*="bg-black/5"] { background: none !important; border: 1px solid #999; color: #000 !important; padding: 0 1mm !important; }
+  article, article *, h1, h1 * { color: #000 !important; }
 }

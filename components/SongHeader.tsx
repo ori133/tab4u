@@ -3,22 +3,22 @@ import Pill from "./Pill";
 
 export default function SongHeader() {
   return (
-    <section className="glass relative overflow-hidden rounded-[2rem] p-5 sm:p-7">
+    <section className="glass relative overflow-hidden rounded-[2rem] p-5 sm:p-7 print:p-0">
       <div className="pointer-events-none absolute -start-20 -top-24 size-72 print:hidden rounded-full bg-gradient-to-br from-lime/40 to-transparent blur-2xl" />
       <div className="relative grid items-center gap-8 md:grid-cols-[1fr_auto]">
         <div>
-          <div className="mb-3 flex flex-wrap gap-2">
+          <div className="mb-3 flex flex-wrap gap-2 print:hidden">
             {song.tags.map((t) => (
               <Pill key={t}>{t}</Pill>
             ))}
           </div>
-          <h1 className="font-display text-3xl leading-tight tracking-tight sm:text-4xl">
+          <h1 className="font-display text-3xl leading-tight tracking-tight sm:text-4xl print:text-[15pt] print:mb-2">
             אקורדים לשיר <span className="text-brand">{song.title}</span>
-            <span className="block text-xl text-muted sm:text-2xl">
+            <span className="block text-xl text-muted sm:text-2xl print:ms-2 print:inline print:text-[13pt]"> 
               של <a href="#" className="text-ink underline decoration-black/20 underline-offset-4 transition hover:decoration-brand">{song.artist}</a>
             </span>
           </h1>
-          <dl className="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-sm">
+          <dl className="mt-4 grid print:hidden grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-sm">
             <dt className="text-muted">מחבר ומלחין</dt>
             <dd>{song.credits.map((c, i) => (<span key={c}>{i > 0 && " ו"}<a href="#" className="underline decoration-black/20 underline-offset-4 hover:decoration-brand">{c}</a></span>))}</dd>
             <dt className="text-muted">פריטה</dt>
